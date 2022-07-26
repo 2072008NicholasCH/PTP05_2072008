@@ -54,7 +54,6 @@ public class mainController {
     @FXML
     private FXMLLoader fxmlLoader;
     private ObservableList<Category> namaKategori;
-    ObservableList<Item> selectedItem;
 
     public void initialize() throws IOException {
         fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("category-view.fxml"));
@@ -69,7 +68,6 @@ public class mainController {
     }
 
     public void getSelectedItem() {
-        selectedItem = tableView.getSelectionModel().getSelectedItems();
         txtId.setText(String.valueOf(tableView.getSelectionModel().getSelectedItem().getId()));
         txtName.setText(tableView.getSelectionModel().getSelectedItem().getNama());
         txtPrice.setText(String.valueOf(tableView.getSelectionModel().getSelectedItem().getPrice()));
@@ -130,9 +128,7 @@ public class mainController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to delete this selected data?", ButtonType.OK, ButtonType.CANCEL);
         alert.showAndWait();
         if (alert.getResult() == ButtonType.OK) {
-            for(Item item: selectedItem){
-                itemDao.delData(item);
-            }
+            itemDao.delData(tableView.getSelectionModel().getSelectedItem());
             tampilan();
             reset();
         }
