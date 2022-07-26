@@ -63,6 +63,8 @@ public class mainController {
         stage.setTitle("Category Management");
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
+        btnDel.setDisable(true);
+        btnUpdate.setDisable(true);
         tampilan();
     }
 
@@ -75,6 +77,8 @@ public class mainController {
         cBoxKat.setValue(tableView.getSelectionModel().getSelectedItem().getCategory());
         txtId.setDisable(true);
         btnSave.setDisable(true);
+        btnDel.setDisable(false);
+        btnUpdate.setDisable(false);
     }
 
     public void addData(ActionEvent actionEvent) {
@@ -107,6 +111,8 @@ public class mainController {
         cBoxKat.setValue(null);
         btnSave.setDisable(false);
         txtId.setDisable(false);
+        btnDel.setDisable(true);
+        btnUpdate.setDisable(true);
     }
 
     public void upData(ActionEvent actionEvent) {
